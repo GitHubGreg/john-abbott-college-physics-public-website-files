@@ -96,6 +96,18 @@
     "modified": "2021-01-04"
   },
   {
+    "title": "Test",
+    "category": "Links",
+    "course": "",
+    "subsection": "",
+    "sourcePath": "Links/Test.pdf",
+    "publicPath": "files/links/test.pdf",
+    "url": "files/links/test.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 8096,
+    "modified": "2026-06-12"
+  },
+  {
     "title": "nyb_ps_sol_1",
     "category": "Problem Set Solutions",
     "course": "NYB",
