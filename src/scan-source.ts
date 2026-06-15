@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { config } from "./config.js";
+import { parseSourcePath } from "./subsections.js";
 import type { ScanResult, ScannedFile } from "./types.js";
 
 const ONEDRIVE_PLACEHOLDER_EXTENSIONS = new Set([
@@ -58,14 +59,6 @@ function titleFromFilename(filename: string): string {
   const ext = path.extname(filename);
   const base = ext ? filename.slice(0, -ext.length) : filename;
   return base.trim() || filename;
-}
-
-function categoryFromRelativePath(relativePath: string): string {
-  const parts = relativePath.split(path.sep).filter(Boolean);
-  if (parts.length <= 1) {
-    return "General";
-  }
-  return parts[0];
 }
 
 function isIgnoredTopLevelFolder(relativeDir: string, entryName: string): boolean {
@@ -137,10 +130,15 @@ function scanDirectory(
       continue;
     }
 
+    const normalizedPath = relativePath.replace(/\\/g, "/");
+    const { category, course, subsection } = parseSourcePath(normalizedPath);
+
     result.publishable.push({
       absolutePath,
-      relativeSourcePath: relativePath.replace(/\\/g, "/"),
-      category: categoryFromRelativePath(relativePath),
+      relativeSourcePath: normalizedPath,
+      category,
+      course,
+      subsection,
       title: titleFromFilename(entry.name),
       extension,
       sizeBytes: stats.size,

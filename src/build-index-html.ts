@@ -1,4 +1,9 @@
 import { config } from "./config.js";
+import {
+  compareSubsections,
+  getSubsectionTitle,
+  usesCourseSubsections,
+} from "./subsections.js";
 import type { ManifestEntry } from "./types.js";
 
 function escapeHtml(value: string): string {
@@ -32,6 +37,22 @@ export function formatFileSize(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
+function renderFileList(files: ManifestEntry[]): string {
+  const items = files
+    .map((file) => {
+      const meta = `${formatFileType(file.extension)}, updated ${file.modified}, ${formatFileSize(file.sizeBytes)}`;
+      return `    <li>
+      <a href="${escapeHtml(file.url)}">${escapeHtml(file.title)}</a>
+      <span>${escapeHtml(meta)}</span>
+    </li>`;
+    })
+    .join("\n");
+
+  return `<ul>
+${items}
+  </ul>`;
+}
+
 function groupByCategory(entries: ManifestEntry[]): Map<string, ManifestEntry[]> {
   const groups = new Map<string, ManifestEntry[]>();
 
@@ -39,12 +60,6 @@ function groupByCategory(entries: ManifestEntry[]): Map<string, ManifestEntry[]>
     const list = groups.get(entry.category) ?? [];
     list.push(entry);
     groups.set(entry.category, list);
-  }
-
-  for (const [, list] of groups) {
-    list.sort((a, b) =>
-      a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
-    );
   }
 
   return new Map(
@@ -62,28 +77,68 @@ function groupByCategory(entries: ManifestEntry[]): Map<string, ManifestEntry[]>
   );
 }
 
+function groupBySubsection(
+  files: ManifestEntry[],
+): Map<string, ManifestEntry[]> {
+  const groups = new Map<string, ManifestEntry[]>();
+
+  for (const file of files) {
+    const key = `${file.course}\0${file.subsection}`;
+    const list = groups.get(key) ?? [];
+    list.push(file);
+    groups.set(key, list);
+  }
+
+  for (const [, list] of groups) {
+    list.sort((a, b) =>
+      a.title.localeCompare(b.title, undefined, { sensitivity: "base" }),
+    );
+  }
+
+  return new Map(
+    [...groups.entries()].sort(([keyA], [keyB]) => {
+      const [courseA, subsectionA] = keyA.split("\0");
+      const [courseB, subsectionB] = keyB.split("\0");
+      return compareSubsections(
+        { course: courseA, subsection: subsectionA },
+        { course: courseB, subsection: subsectionB },
+      );
+    }),
+  );
+}
+
+function renderCategorySection(
+  category: string,
+  files: ManifestEntry[],
+): string {
+  if (!usesCourseSubsections(category)) {
+    return `<section>
+  <h2>${escapeHtml(category)}</h2>
+${renderFileList(files)}
+</section>`;
+  }
+
+  const subsections = groupBySubsection(files);
+  const blocks = [...subsections.entries()].map(([key, subsectionFiles]) => {
+    const [course, subsection] = key.split("\0");
+    const title = getSubsectionTitle(category, course, subsection);
+    return `  <div class="subsection">
+    <h3>${escapeHtml(title)}</h3>
+${renderFileList(subsectionFiles)}
+  </div>`;
+  });
+
+  return `<section>
+  <h2>${escapeHtml(category)}</h2>
+${blocks.join("\n\n")}
+</section>`;
+}
+
 export function buildIndexHtml(entries: ManifestEntry[]): string {
   const grouped = groupByCategory(entries);
 
   const sections = [...grouped.entries()]
-    .map(([category, files]) => {
-      const items = files
-        .map((file) => {
-          const meta = `${formatFileType(file.extension)}, updated ${file.modified}, ${formatFileSize(file.sizeBytes)}`;
-          return `    <li>
-      <a href="${escapeHtml(file.url)}">${escapeHtml(file.title)}</a>
-      <span>${escapeHtml(meta)}</span>
-    </li>`;
-        })
-        .join("\n");
-
-      return `<section>
-  <h2>${escapeHtml(category)}</h2>
-  <ul>
-${items}
-  </ul>
-</section>`;
-    })
+    .map(([category, files]) => renderCategorySection(category, files))
     .join("\n\n");
 
   const emptyMessage =
@@ -101,8 +156,13 @@ ${items}
 </head>
 <body>
   <main>
-    <h1>${escapeHtml(config.siteTitle)}</h1>
-    <p>${escapeHtml(config.siteIntro)}</p>
+    <header class="page-header">
+      <p class="department-link">
+        <a href="${escapeHtml(config.departmentSiteUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(config.departmentSiteLabel)}</a>
+      </p>
+      <h1>${escapeHtml(config.siteTitle)}</h1>
+      <p>${escapeHtml(config.siteIntro)}</p>
+    </header>
     ${emptyMessage}${sections}
   </main>
 </body>

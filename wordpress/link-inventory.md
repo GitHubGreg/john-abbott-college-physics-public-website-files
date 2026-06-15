@@ -26,8 +26,8 @@ Sync folder root:
 Website Files - Auto Synced To PUBLIC Website/
 ├── Textbook/
 ├── Equations/
-├── Solutions/
-├── Exams/
+├── Problem Set Solutions/
+├── Sample Final Exams/
 ├── Links/
 └── Draft/   (never published)
 ```

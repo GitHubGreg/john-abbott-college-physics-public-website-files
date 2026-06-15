@@ -27,10 +27,27 @@ main {
   padding: 2rem 1.25rem 3rem;
 }
 
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.department-link {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+}
+
+.department-link a {
+  font-weight: 600;
+}
+
 h1 {
   font-size: 2rem;
   line-height: 1.2;
   margin: 0 0 0.75rem;
+}
+
+.page-header > p:last-child {
+  margin-bottom: 0;
 }
 
 h2 {
@@ -38,6 +55,21 @@ h2 {
   margin: 0 0 0.75rem;
   border-bottom: 1px solid var(--border);
   padding-bottom: 0.35rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+h3:first-of-type {
+  margin-top: 0;
+}
+
+.subsection + .subsection {
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
 }
 
 p {

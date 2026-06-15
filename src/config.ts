@@ -6,12 +6,31 @@ export const config = {
   siteTitle: "Physics Department Shared Files",
   siteIntro:
     "This page provides publicly shared Physics Department documents for John Abbott College students.",
-  publicSiteUrl:
-    "https://githubgreg.github.io/john-abbott-college-physics-public-website-files/",
+  /** Public URL shown in links and logs. Use custom domain when configured. */
+  publicSiteUrl: "https://department-files.ephysics.ca/",
+  /** GitHub Pages custom domain (also written to docs/CNAME on each build). */
+  customDomain: "department-files.ephysics.ca",
+  departmentSiteUrl: "https://departments.johnabbott.qc.ca/departments/physics/",
+  departmentSiteLabel: "Physics Department website",
   /** Top-level source subfolders that are never published (e.g. drafts). */
   ignoredTopLevelFolders: ["Draft"],
   /** Category display order on the public index (matches WordPress tabs). */
-  categoryOrder: ["Textbook", "Equations", "Solutions", "Exams", "Links"],
+  categoryOrder: [
+    "Textbook",
+    "Equations",
+    "Problem Set Solutions",
+    "Sample Final Exams",
+    "Links",
+  ],
+  /** Course subfolder order within each category section. */
+  courseOrder: ["SN1", "SN2", "SN3", "NYB", "NYC", "SF2"],
+  /** Top-level folders that use course subfolders on the public index. */
+  categoriesWithCourseSubfolders: [
+    "Textbook",
+    "Equations",
+    "Problem Set Solutions",
+    "Sample Final Exams",
+  ],
   allowedExtensions: [
     ".pdf",
     ".docx",
