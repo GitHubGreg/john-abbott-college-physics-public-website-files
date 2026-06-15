@@ -42,7 +42,16 @@ function shouldIgnoreEntry(name: string): boolean {
 
 function isBlocked(relativePath: string): boolean {
   const normalized = relativePath.toLowerCase().replace(/\\/g, "/");
-  return config.blockedTerms.some((term) => normalized.includes(term));
+
+  return config.blockedTerms.some((term) => {
+    if (term.includes(" ") || term.includes("-")) {
+      return normalized.includes(term);
+    }
+
+    const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const pattern = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`);
+    return pattern.test(normalized);
+  });
 }
 
 function titleFromFilename(filename: string): string {
@@ -57,6 +66,13 @@ function categoryFromRelativePath(relativePath: string): string {
     return "General";
   }
   return parts[0];
+}
+
+function isIgnoredTopLevelFolder(relativeDir: string, entryName: string): boolean {
+  if (relativeDir !== "") {
+    return false;
+  }
+  return (config.ignoredTopLevelFolders as readonly string[]).includes(entryName);
 }
 
 function scanDirectory(
@@ -76,11 +92,7 @@ function scanDirectory(
   for (const entry of entries) {
     if (shouldIgnoreEntry(entry.name)) {
       const ignoredPath = path.join(relativeDir, entry.name).replace(/\\/g, "/");
-      result.skippedIgnored.push(
-        relativeDir
-          ? `${config.publicSubfolder}/${ignoredPath}`
-          : `${config.publicSubfolder}/${entry.name}`,
-      );
+      result.skippedIgnored.push(ignoredPath || entry.name);
       continue;
     }
 
@@ -88,6 +100,9 @@ function scanDirectory(
     const relativePath = path.join(relativeDir, entry.name);
 
     if (entry.isDirectory()) {
+      if (isIgnoredTopLevelFolder(relativeDir, entry.name)) {
+        continue;
+      }
       scanDirectory(absolutePath, relativePath, result);
       continue;
     }
@@ -96,7 +111,7 @@ function scanDirectory(
       continue;
     }
 
-    const displayPath = `${config.publicSubfolder}/${relativePath.replace(/\\/g, "/")}`;
+    const displayPath = relativePath.replace(/\\/g, "/");
 
     if (isBlocked(displayPath)) {
       result.skippedBlocked.push(displayPath);

@@ -16,8 +16,8 @@ function formatDate(date: Date): string {
   return date.toISOString().slice(0, 10);
 }
 
-function resolvePublicSourceRoot(): string {
-  return path.join(config.sourceRoot, config.publicSubfolder);
+function resolveSourceRoot(): string {
+  return config.sourceRoot;
 }
 
 function resolveOutputRoot(): string {
@@ -53,7 +53,7 @@ function toManifestEntry(file: ResolvedFile): ManifestEntry {
   return {
     title: file.title,
     category: file.category,
-    sourcePath: `${config.publicSubfolder}/${file.relativeSourcePath}`,
+    sourcePath: file.relativeSourcePath,
     publicPath: file.publicPath,
     url: file.url,
     extension: file.extension,
@@ -98,7 +98,7 @@ function printSummary(
   if (summary.published.length > 0) {
     for (const file of summary.published) {
       console.log(
-        `  - ${config.publicSubfolder}/${file.relativeSourcePath} -> ${file.publicPath}`,
+        `  - ${file.relativeSourcePath} -> ${file.publicPath}`,
       );
     }
   }
@@ -174,13 +174,13 @@ export async function runPublish(options: {
   quiet?: boolean;
 } = {}): Promise<PublishSummary> {
   const dryRun = options.dryRun ?? false;
-  const sourceRoot = resolvePublicSourceRoot();
+  const sourceRoot = resolveSourceRoot();
   const outputRoot = resolveOutputRoot();
 
   if (!fs.existsSync(sourceRoot)) {
     throw new Error(
       `Source folder not found: ${sourceRoot}\n` +
-        `Ensure the OneDrive-synced Public folder exists before publishing.`,
+        `Ensure the OneDrive-synced source folder exists before publishing.`,
     );
   }
 
@@ -210,7 +210,7 @@ async function main(): Promise<void> {
   const watch = args.includes("--watch");
 
   if (watch) {
-    const sourceRoot = resolvePublicSourceRoot();
+    const sourceRoot = resolveSourceRoot();
     if (!fs.existsSync(sourceRoot)) {
       throw new Error(`Source folder not found: ${sourceRoot}`);
     }

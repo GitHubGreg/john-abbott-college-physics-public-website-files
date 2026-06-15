@@ -2,7 +2,7 @@
 
 Local Mac-based publishing system for John Abbott College Physics Department website files.
 
-The department maintains documents in a Microsoft OneDrive / SharePoint synced folder. This project scans the local `Public/` subfolder, generates a static file index, and publishes the files to GitHub Pages. The existing WordPress Physics page only needs a single link to the GitHub Pages URL.
+The department maintains documents in a Microsoft OneDrive / SharePoint synced folder. This project scans that folder, generates a static file index, and publishes the files to GitHub Pages. The existing WordPress Physics page only needs a single link to the GitHub Pages URL.
 
 ## Architecture
 
@@ -25,23 +25,45 @@ Existing WordPress Physics page links to the file index
 The source of truth is the OneDrive-synced folder:
 
 ```text
-/Users/Greg/Library/CloudStorage/OneDrive-SharedLibraries-JohnAbbottCollege/Physics Dept - Documents/Website Files/Public
+/Users/Greg/Library/CloudStorage/OneDrive-SharedLibraries-JohnAbbottCollege/Physics Dept - Documents/Website Files - Auto Synced To PUBLIC Website
 ```
 
-Only files inside `Public/` are published. Everything else — including `Draft/` or other sibling folders — is ignored.
+**Everything in this folder is published to the public internet**, except:
 
-Organize files like this:
+- Files inside the top-level `Draft/` folder (ignored)
+- Hidden, temporary, or unsupported files (skipped automatically)
+- Files matching the safety blocklist (skipped with a warning)
+
+Organize files to match the WordPress Physics page tabs:
 
 ```text
-Website Files/
-├── Public/
-│   ├── Problem Set Solutions/
-│   ├── Sample Finals/
-│   ├── Equation Sheets/
-│   ├── Lab Documents/
-│   └── Course Outlines/
-└── Draft/
+Website Files - Auto Synced To PUBLIC Website/
+├── Textbook/
+│   ├── SN1/
+│   ├── SN3/
+│   ├── NYB/
+│   └── NYC/
+├── Equations/
+├── Solutions/
+│   ├── SN1/
+│   ├── SN2/
+│   ├── SN3/
+│   ├── NYB/
+│   └── NYC/
+├── Exams/
+├── Links/
+└── Draft/          ← never published
 ```
+
+| Folder | WordPress tab |
+|--------|---------------|
+| `Textbook/` | Textbook |
+| `Equations/` | Equations |
+| `Solutions/` | Solutions |
+| `Exams/` | Exams |
+| `Links/` | Links (department PDFs) |
+
+Use course subfolders (`SN1`, `SN2`, etc.) inside `Textbook/` and `Solutions/` where helpful.
 
 ## Install
 
@@ -64,7 +86,7 @@ Always run `npm run dry-run` before the first real publish.
 
 ## GitHub Pages setup
 
-1. Create or use the public repository: `john-abbott-college-physics-public-website-files`
+1. Use the public repository: `john-abbott-college-physics-public-website-files`
 2. In the repo settings, configure GitHub Pages:
    - Source: **Deploy from a branch**
    - Branch: **main**
@@ -79,11 +101,22 @@ git commit -m "Update public files"
 git push
 ```
 
-The public URL will be:
+The public URL is:
 
 ```text
 https://githubgreg.github.io/john-abbott-college-physics-public-website-files/
 ```
+
+## WordPress page (version controlled)
+
+The live Physics department WordPress pages (English and French) are tracked in `wordpress/`:
+
+- `wordpress/physics-page.baseline.en.html` — English page as of 2026-06-15
+- `wordpress/physics-page.baseline.fr.html` — French page as of 2026-06-15
+- `wordpress/link-inventory.md` — Dropbox vs OneDrive sync folder mapping and gaps
+- `wordpress/shared-files-tab.snippet.en.html` / `.fr.html` — planned Shared Files tabs
+
+See `wordpress/README.md` for tab structure, bilingual notes, migration plan, and editing workflow.
 
 ## WordPress snippet
 
@@ -106,9 +139,10 @@ Open Physics Department shared files
 
 ## Safety notes
 
-**Files placed in `Website Files/Public/` will be published to the public internet.**
+**Files placed in `Website Files - Auto Synced To PUBLIC Website/` will be published to the public internet.**
 
-- Only the `Public/` subfolder is ever scanned
+- The folder name is intentional — treat it as a public drop zone
+- Use `Draft/` for anything that must not be published
 - Unsupported, hidden, and temporary files are skipped automatically
 - A configurable blocklist catches filenames containing sensitive terms such as `confidential`, `private`, or `answer key`
 - The blocklist is a safeguard only — careful folder organization is still required
@@ -119,6 +153,7 @@ Open Physics Department shared files
 Edit `src/config.ts` to change:
 
 - Source folder path
+- Ignored top-level folders (e.g. `Draft`)
 - Allowed file extensions
 - Safety blocklist terms
 - Site title and intro text
@@ -134,6 +169,13 @@ Edit `src/config.ts` to change:
 │   ├── scan-source.ts
 │   ├── slug.ts
 │   └── types.ts
+├── wordpress/
+│   ├── physics-page.baseline.en.html
+│   ├── physics-page.baseline.fr.html
+│   ├── link-inventory.md
+│   ├── shared-files-tab.snippet.en.html
+│   ├── shared-files-tab.snippet.fr.html
+│   └── README.md
 ├── public-template/
 │   └── styles.css
 ├── docs/

@@ -1,7 +1,6 @@
 export const config = {
   sourceRoot:
-    "/Users/Greg/Library/CloudStorage/OneDrive-SharedLibraries-JohnAbbottCollege/Physics Dept - Documents/Website Files",
-  publicSubfolder: "Public",
+    "/Users/Greg/Library/CloudStorage/OneDrive-SharedLibraries-JohnAbbottCollege/Physics Dept - Documents/Website Files - Auto Synced To PUBLIC Website",
   outputRoot: "docs",
   filesOutputSubfolder: "files",
   siteTitle: "Physics Department Shared Files",
@@ -9,6 +8,10 @@ export const config = {
     "This page provides publicly shared Physics Department documents for John Abbott College students.",
   publicSiteUrl:
     "https://githubgreg.github.io/john-abbott-college-physics-public-website-files/",
+  /** Top-level source subfolders that are never published (e.g. drafts). */
+  ignoredTopLevelFolders: ["Draft"],
+  /** Category display order on the public index (matches WordPress tabs). */
+  categoryOrder: ["Textbook", "Equations", "Solutions", "Exams", "Links"],
   allowedExtensions: [
     ".pdf",
     ".docx",

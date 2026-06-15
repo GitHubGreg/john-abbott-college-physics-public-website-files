@@ -48,9 +48,17 @@ function groupByCategory(entries: ManifestEntry[]): Map<string, ManifestEntry[]>
   }
 
   return new Map(
-    [...groups.entries()].sort(([a], [b]) =>
-      a.localeCompare(b, undefined, { sensitivity: "base" }),
-    ),
+    [...groups.entries()].sort(([a], [b]) => {
+      const order = config.categoryOrder as readonly string[];
+      const indexA = order.indexOf(a);
+      const indexB = order.indexOf(b);
+      const rankA = indexA === -1 ? order.length : indexA;
+      const rankB = indexB === -1 ? order.length : indexB;
+      if (rankA !== rankB) {
+        return rankA - rankB;
+      }
+      return a.localeCompare(b, undefined, { sensitivity: "base" });
+    }),
   );
 }
 
@@ -80,7 +88,7 @@ ${items}
 
   const emptyMessage =
     entries.length === 0
-      ? `<p class="empty-state">No files are published yet. Add documents to the Public folder and run the publisher.</p>\n\n`
+      ? `<p class="empty-state">No files are published yet. Add documents to the synced source folder and run the publisher.</p>\n\n`
       : "";
 
   return `<!DOCTYPE html>
