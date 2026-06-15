@@ -1,0 +1,143 @@
+:root {
+  color-scheme: light;
+  --text: #1a1a1a;
+  --muted: #555;
+  --link: #0b4f8a;
+  --link-hover: #08365f;
+  --border: #d9dde3;
+  --bg: #ffffff;
+  --section-bg: #f7f9fc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+main {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+  margin: 0 0 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.35rem;
+}
+
+p {
+  margin: 0 0 1.5rem;
+}
+
+.empty-state {
+  padding: 1rem 1.25rem;
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+section {
+  margin: 0 0 2rem;
+  padding: 1.25rem;
+  background: var(--section-bg);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+li:first-child {
+  padding-top: 0;
+}
+
+a {
+  color: var(--link);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover);
+}
+
+span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@media (min-width: 40rem) {
+  li {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  span {
+    flex-shrink: 0;
+    text-align: right;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  main {
+    max-width: none;
+    padding: 0;
+  }
+
+  section {
+    break-inside: avoid;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  a::after {
+    content: " (" attr(href) ")";
+    font-weight: normal;
+    font-size: 0.85rem;
+  }
+}

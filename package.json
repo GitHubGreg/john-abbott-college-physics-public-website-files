@@ -1,0 +1,30 @@
+{
+  "name": "john-abbott-college-physics-public-website-files",
+  "version": "1.0.0",
+  "description": "Local publishing system for John Abbott Physics Department public files",
+  "type": "module",
+  "scripts": {
+    "build": "tsx src/publish.ts",
+    "dry-run": "tsx src/publish.ts --dry-run",
+    "watch": "tsx src/publish.ts --watch",
+    "serve": "npx http-server docs -p 8080",
+    "publish": "tsx src/publish.ts && git add docs && git commit -m \"Update public files\" && git push"
+  },
+  "keywords": [
+    "physics",
+    "github-pages",
+    "publisher"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.15.21",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3",
+    "fs-extra": "^11.3.0",
+    "slugify": "^1.6.6"
+  }
+}
