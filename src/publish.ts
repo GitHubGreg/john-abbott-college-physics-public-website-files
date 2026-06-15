@@ -173,6 +173,10 @@ async function writeGeneratedAssets(
   });
   await fse.writeFile(path.join(outputRoot, "index.html"), buildIndexHtml(manifest), "utf8");
   await fse.copy(templateCss, path.join(outputRoot, "styles.css"));
+  await fse.copy(
+    path.join(projectRoot, "public-template", "anchors.js"),
+    path.join(outputRoot, "anchors.js"),
+  );
 
   if (config.customDomain) {
     await fse.writeFile(

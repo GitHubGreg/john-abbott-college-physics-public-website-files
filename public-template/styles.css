@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   color-scheme: light;
   --text: #1a1a1a;
@@ -81,6 +85,11 @@ p {
   background: var(--section-bg);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
+}
+
+section,
+.subsection {
+  scroll-margin-top: 1.5rem;
 }
 
 section {

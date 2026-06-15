@@ -1,7 +1,9 @@
 import { config } from "./config.js";
 import {
+  categoryAnchorId,
   compareSubsections,
   getSubsectionTitle,
+  subsectionAnchorId,
   usesCourseSubsections,
 } from "./subsections.js";
 import type { ManifestEntry } from "./types.js";
@@ -112,7 +114,7 @@ function renderCategorySection(
   files: ManifestEntry[],
 ): string {
   if (!usesCourseSubsections(category)) {
-    return `<section>
+    return `<section id="${escapeHtml(categoryAnchorId(category))}">
   <h2>${escapeHtml(category)}</h2>
 ${renderFileList(files)}
 </section>`;
@@ -122,13 +124,14 @@ ${renderFileList(files)}
   const blocks = [...subsections.entries()].map(([key, subsectionFiles]) => {
     const [course, subsection] = key.split("\0");
     const title = getSubsectionTitle(category, course, subsection);
-    return `  <div class="subsection">
+    const id = subsectionAnchorId(category, course, subsection);
+    return `  <div class="subsection" id="${escapeHtml(id)}">
     <h3>${escapeHtml(title)}</h3>
 ${renderFileList(subsectionFiles)}
   </div>`;
   });
 
-  return `<section>
+  return `<section id="${escapeHtml(categoryAnchorId(category))}">
   <h2>${escapeHtml(category)}</h2>
 ${blocks.join("\n\n")}
 </section>`;
@@ -153,6 +156,7 @@ export function buildIndexHtml(entries: ManifestEntry[]): string {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${escapeHtml(config.siteTitle)}</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="anchors.js" defer></script>
 </head>
 <body>
   <main>

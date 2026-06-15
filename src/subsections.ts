@@ -1,4 +1,5 @@
 import { config } from "./config.js";
+import { slugifySegment } from "./slug.js";
 
 const COURSE_PATTERN =
   /\b(SN[123]|NYB|NYC|SF2)\b/i;
@@ -82,6 +83,9 @@ export function getSubsectionTitle(
   }
 
   if (category === "Problem Set Solutions") {
+    if (subsection.toLowerCase() === "caroline youtube problems") {
+      return "Additional NYB Problems";
+    }
     if (subsection.toLowerCase() === "supplementary") {
       if (courseKey === "NYB") {
         return "Solutions to Supplementary NYB Problems";
@@ -124,4 +128,20 @@ export function usesCourseSubsections(category: string): boolean {
   return (config.categoriesWithCourseSubfolders as readonly string[]).includes(
     category,
   );
+}
+
+export function categoryAnchorId(category: string): string {
+  return slugifySegment(category);
+}
+
+export function subsectionAnchorId(
+  category: string,
+  course: string,
+  subsection: string,
+): string {
+  const parts = [category, course];
+  if (subsection) {
+    parts.push(subsection);
+  }
+  return slugifySegment(parts.join("-"));
 }
