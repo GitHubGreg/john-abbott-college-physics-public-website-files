@@ -648,18 +648,6 @@
     "modified": "2026-05-20"
   },
   {
-    "title": "Physics-NYB-OpenStax-University-Physics-Vol-2-Ch-5-13",
-    "category": "Textbook",
-    "course": "NYB",
-    "subsection": "",
-    "sourcePath": "Textbook/NYB/Physics-NYB-OpenStax-University-Physics-Vol-2-Ch-5-13.pdf",
-    "publicPath": "files/textbook/nyb/physics-nyb-openstax-university-physics-vol-2-ch-5-13.pdf",
-    "url": "files/textbook/nyb/physics-nyb-openstax-university-physics-vol-2-ch-5-13.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 53688478,
-    "modified": "2021-01-04"
-  },
-  {
     "title": "Physics-Mechanics-203-SN1",
     "category": "Textbook",
     "course": "SN1",
@@ -670,6 +658,18 @@
     "extension": ".pdf",
     "sizeBytes": 44539375,
     "modified": "2024-08-22"
+  },
+  {
+    "title": "Physics-NYB-OpenStax-University-Physics-Vol-2-Ch-5-13",
+    "category": "Textbook",
+    "course": "SN2",
+    "subsection": "",
+    "sourcePath": "Textbook/SN2/Physics-NYB-OpenStax-University-Physics-Vol-2-Ch-5-13.pdf",
+    "publicPath": "files/textbook/sn2/physics-nyb-openstax-university-physics-vol-2-ch-5-13.pdf",
+    "url": "files/textbook/sn2/physics-nyb-openstax-university-physics-vol-2-ch-5-13.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 53688478,
+    "modified": "2021-01-04"
   },
   {
     "title": "OpenStax-Waves-203-SN3",
