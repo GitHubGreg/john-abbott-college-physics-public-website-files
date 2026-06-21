@@ -120,42 +120,6 @@
     "modified": "2021-01-04"
   },
   {
-    "title": "Unit1_NYBproblems",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Caroline YouTube Problems",
-    "sourcePath": "Problem Set Solutions/NYB/Caroline YouTube Problems/Unit1_NYBproblems.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit1nybproblems.pdf",
-    "url": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit1nybproblems.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 235088,
-    "modified": "2026-06-15"
-  },
-  {
-    "title": "Unit2_NYBproblems",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Caroline YouTube Problems",
-    "sourcePath": "Problem Set Solutions/NYB/Caroline YouTube Problems/Unit2_NYBproblems.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit2nybproblems.pdf",
-    "url": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit2nybproblems.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 382186,
-    "modified": "2026-06-15"
-  },
-  {
-    "title": "Unit3_NYBproblems",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Caroline YouTube Problems",
-    "sourcePath": "Problem Set Solutions/NYB/Caroline YouTube Problems/Unit3_NYBproblems.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit3nybproblems.pdf",
-    "url": "files/problem-set-solutions/nyb/caroline-youtube-problems/unit3nybproblems.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 353684,
-    "modified": "2026-06-15"
-  },
-  {
     "title": "nyb_ps_sol_1",
     "category": "Problem Set Solutions",
     "course": "NYB",
@@ -226,42 +190,6 @@
     "extension": ".pdf",
     "sizeBytes": 434970,
     "modified": "2023-11-28"
-  },
-  {
-    "title": "Supp1",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Supplementary",
-    "sourcePath": "Problem Set Solutions/NYB/Supplementary/Supp1.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/supplementary/supp1.pdf",
-    "url": "files/problem-set-solutions/nyb/supplementary/supp1.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 106373,
-    "modified": "2021-01-04"
-  },
-  {
-    "title": "Supp2",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Supplementary",
-    "sourcePath": "Problem Set Solutions/NYB/Supplementary/Supp2.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/supplementary/supp2.pdf",
-    "url": "files/problem-set-solutions/nyb/supplementary/supp2.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 4927288,
-    "modified": "2021-01-04"
-  },
-  {
-    "title": "Supp3",
-    "category": "Problem Set Solutions",
-    "course": "NYB",
-    "subsection": "Supplementary",
-    "sourcePath": "Problem Set Solutions/NYB/Supplementary/Supp3.pdf",
-    "publicPath": "files/problem-set-solutions/nyb/supplementary/supp3.pdf",
-    "url": "files/problem-set-solutions/nyb/supplementary/supp3.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 4624650,
-    "modified": "2021-01-04"
   },
   {
     "title": "nyc_ps_sol_1",
@@ -444,6 +372,42 @@
     "modified": "2024-12-09"
   },
   {
+    "title": "Unit1_NYBproblems",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Caroline YouTube Problems",
+    "sourcePath": "Problem Set Solutions/SN2/Caroline YouTube Problems/Unit1_NYBproblems.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit1nybproblems.pdf",
+    "url": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit1nybproblems.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 235088,
+    "modified": "2026-06-15"
+  },
+  {
+    "title": "Unit2_NYBproblems",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Caroline YouTube Problems",
+    "sourcePath": "Problem Set Solutions/SN2/Caroline YouTube Problems/Unit2_NYBproblems.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit2nybproblems.pdf",
+    "url": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit2nybproblems.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 382186,
+    "modified": "2026-06-15"
+  },
+  {
+    "title": "Unit3_NYBproblems",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Caroline YouTube Problems",
+    "sourcePath": "Problem Set Solutions/SN2/Caroline YouTube Problems/Unit3_NYBproblems.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit3nybproblems.pdf",
+    "url": "files/problem-set-solutions/sn2/caroline-youtube-problems/unit3nybproblems.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 353684,
+    "modified": "2026-06-15"
+  },
+  {
     "title": "SN2_ps_sol_1",
     "category": "Problem Set Solutions",
     "course": "SN2",
@@ -514,6 +478,42 @@
     "extension": ".pdf",
     "sizeBytes": 332113,
     "modified": "2026-02-26"
+  },
+  {
+    "title": "Supp1",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Supplementary",
+    "sourcePath": "Problem Set Solutions/SN2/Supplementary/Supp1.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/supplementary/supp1.pdf",
+    "url": "files/problem-set-solutions/sn2/supplementary/supp1.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 106373,
+    "modified": "2021-01-04"
+  },
+  {
+    "title": "Supp2",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Supplementary",
+    "sourcePath": "Problem Set Solutions/SN2/Supplementary/Supp2.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/supplementary/supp2.pdf",
+    "url": "files/problem-set-solutions/sn2/supplementary/supp2.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 4927288,
+    "modified": "2021-01-04"
+  },
+  {
+    "title": "Supp3",
+    "category": "Problem Set Solutions",
+    "course": "SN2",
+    "subsection": "Supplementary",
+    "sourcePath": "Problem Set Solutions/SN2/Supplementary/Supp3.pdf",
+    "publicPath": "files/problem-set-solutions/sn2/supplementary/supp3.pdf",
+    "url": "files/problem-set-solutions/sn2/supplementary/supp3.pdf",
+    "extension": ".pdf",
+    "sizeBytes": 4624650,
+    "modified": "2021-01-04"
   },
   {
     "title": "sn3_ps_sol_1",
