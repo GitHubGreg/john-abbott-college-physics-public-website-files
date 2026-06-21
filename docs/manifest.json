@@ -1,29 +1,5 @@
 [
   {
-    "title": "NYB Equation Sheet and Data Sheet",
-    "category": "Equations",
-    "course": "NYB",
-    "subsection": "",
-    "sourcePath": "Equations/NYB/NYB Equation Sheet and Data Sheet.pdf",
-    "publicPath": "files/equations/nyb/nyb-equation-sheet-and-data-sheet.pdf",
-    "url": "files/equations/nyb/nyb-equation-sheet-and-data-sheet.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 88733,
-    "modified": "2023-12-28"
-  },
-  {
-    "title": "NYC-Equation-Sheet-2022-05-28",
-    "category": "Equations",
-    "course": "NYC",
-    "subsection": "",
-    "sourcePath": "Equations/NYC/NYC-Equation-Sheet-2022-05-28.pdf",
-    "publicPath": "files/equations/nyc/nyc-equation-sheet-2022-05-28.pdf",
-    "url": "files/equations/nyc/nyc-equation-sheet-2022-05-28.pdf",
-    "extension": ".pdf",
-    "sizeBytes": 116602,
-    "modified": "2024-04-08"
-  },
-  {
     "title": "F25_SF2_FeuilleEquations",
     "category": "Equations",
     "course": "SF2",
